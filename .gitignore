@@ -1,0 +1,16 @@
+# Machine-specific, auto-generated
+nixos/hardware-configuration.nix
+
+# Nix build outputs / symlinks
+result
+result-*
+
+# direnv
+.direnv/
+.envrc.local
+
+# Editor / OS junk
+.DS_Store
+*.swp
+*.swo
+*~
