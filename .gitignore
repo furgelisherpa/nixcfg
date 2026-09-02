@@ -1,0 +1,18 @@
+# Machine-specific, auto-generated
+nixos/hardware-configuration.nix
+
+# Nix build outputs / symlinks
+result
+result-*
+
+# Secrets: never commit plaintext secret files. The age private key lives
+# outside the repo (in ~/.config/sops/age/keys.txt) and is never committed.
+secrets/*.plain
+secrets/*.tmp
+secrets/*.dec
+
+# Editor / OS junk
+.DS_Store
+*.swp
+*.swo
+*~
