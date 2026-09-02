@@ -122,8 +122,8 @@
         "pgmacs": "pgmacs"
       },
       "locked": {
-        "lastModified": 1788360516,
-        "narHash": "sha256-asOD5WsCBSumglNf0yiXCNSDNJJvD2l87G8QEajt8wQ=",
+        "lastModified": 1788367286,
+        "narHash": "sha256-gw6uTQKiWB+Aob+zXe7gU2+iFnr1bPdsR1ppV4NE8tU=",
         "path": "/home/pstivy/.github/ma-emacs",
         "type": "path"
       },

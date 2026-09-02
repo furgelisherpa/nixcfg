@@ -19,5 +19,10 @@
     nerd-fonts.ubuntu
     nerd-fonts.ubuntu-mono
     nerd-fonts.jetbrains-mono
+    # Standalone "Symbols Nerd Font (Mono)" — the family nerd-icons (corfu
+    # margin icons, via nerd-icons-corfu) renders its glyphs from. The patched
+    # JetBrainsMono/Ubuntu fonts embed the glyphs but NOT under this family
+    # name, so nerd-icons would fall back to tofu boxes without it.
+    nerd-fonts.symbols-only
   ];
 }
