@@ -21,7 +21,7 @@
 
     # maEmacs: modular Emacs IDE (home-manager module + emacs-overlay)
     ma-emacs = {
-      url = "path:/home/pstivy/.github/ma-emacs";
+      url = "github:furgelisherpa/ma-emacs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
