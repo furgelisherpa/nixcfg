@@ -1,56 +1,69 @@
 {pkgs, ...}: {
   # --- module: desktop.nix -------------------------------------------------
-  # Owns the graphical desktop (display manager, desktop environment, keyring)
-  # plus the system-wide GUI/CLI package set and desktop services (printing).
-
   services = {
-    # COSMIC desktop + its greeter (login screen).
+    # COSMIC desktop + greeter (login screen).
     displayManager.cosmic-greeter.enable = true;
+
     desktopManager.cosmic.enable = true;
     # GNOME keyring unlocks secrets for apps (SSH agents, browser master
     # passwords, etc.) under COSMIC.
     gnome.gnome-keyring.enable = true;
+
+    # Optimization
+    system76-scheduler.enable = true;
   };
 
   environment = {
-    # System-wide packages available to every user. Prefer wrapping per-user
-    # tools in home-manager/modules/packages.nix; keep true multi-user
-    # essentials (CLI/network/virtualization tooling) here.
     systemPackages = with pkgs; [
-      # GUI Tools / Desktop apps
+      # Cosmic Apps
+      cosmic-icons
+      cosmic-monitor
+      cosmic-store
+      cosmic-wallpapers
+
+      # Cosmic Extensions
+      cosmic-ext-applet-caffeine
+      cosmic-ext-applet-weather
+
+      # GUI Tools / Desktop Apps
       vim
-      zathura # PDF viewer
+      zathura
       libreoffice
-      krita # raster painting
+      krita
       gimp
-      obs-studio # screencast/streaming
-      mpv # video player
-      sxiv # image viewer
-      deadbeef # audio player
-      calibre # e-book management
+      obs-studio
+      mpv
+
+      sxiv
+      deadbeef
+      calibre
       spotify
 
       # Terminal Utilities
       bc
       ffmpeg
-      lsd # prettier `ls`
-      highlight # syntax highlighting for `less`/`ccat`
-      yt-dlp # video/audio download
+      lsd
+      highlight
+      yt-dlp
       rsync
       htop
-      jq # JSON processor
+      jq
       tldr
       unzip
       p7zip
-      wl-clipboard # Wayland clipboard CLI (wlc/wlcopy)
+      wl-clipboard
       xxd
       less
+      rlwrap
+      ripgrep
+      fd
+      coreutils
 
       # Network Utilities
       nettools
       inetutils
-      dnsutils # dig/nslookup
-      iproute2 # ip/ss
+      dnsutils
+      iproute2
       mtr
       nmap
       tcpdump
@@ -67,11 +80,16 @@
       nodejs
 
       # Virtualization tooling
-      lazydocker # TUI for docker
-      spice # SPICE protocol client libs (VMs)
+      lazydocker
+      spice
       spice-protocol
       virt-viewer
-      bridge-utils # bridge networking for VMs
+      bridge-utils
+    ];
+    cosmic.excludePackages = with pkgs; [
+      cosmic-edit
+      cosmic-term
+      cosmic-player
     ];
   };
 

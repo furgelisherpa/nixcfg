@@ -14,26 +14,26 @@
     ];
 
     # Colorscheme
-    colorschemes.gruvbox-material-nvim = {
-      enable = true;
+    # colorschemes.ef-themes= {
+    #   enable = true;
 
-      settings = {
-        background = {
-          transparent = false;
-        };
-        comments = {
-          italics = false;
-        };
-        contrast = "hard";
-        float = {
-          force_background = false;
-        };
-        italics = false;
-        signs = {
-          force_background = false;
-        };
-      };
-    };
+    #   settings = {
+    #     background = {
+    #       transparent = false;
+    #     };
+    #     comments = {
+    #       italics = false;
+    #     };
+    #     contrast = "hard";
+    #     float = {
+    #       force_background = false;
+    #     };
+    #     italics = false;
+    #     signs = {
+    #       force_background = false;
+    #     };
+    #   };
+    # };
 
     plugins = {
       # File explorer sidebar
@@ -126,7 +126,7 @@
       ts-autotag.enable = true;
       nvim-autopairs.enable = true;
       web-devicons.enable = true;
-      lualine.enable = true;
+      lualine.enable = false;
     };
 
     # Keymap lives here, next to the plugin it controls

@@ -22,6 +22,7 @@
     ./modules/virtualization.nix
     ./modules/bluetooth.nix
     ./modules/power.nix
+    ./modules/android-dev
   ];
 
   # Some hardware (e.g. Wi-Fi/Bluetooth drivers) is non-free; NixOS ships the

@@ -1,28 +1,37 @@
-{pkgs, ...}: {
+{...}: {
   # --- module: power.nix ---------------------------------------------------
-  # Owns power/energy management: profiles, SSD health, firmware, swap, lid.
+  services = {
+    fstrim.enable = true;
+    fwupd.enable = true;
+    logind.settings.Login = {
+      HandleLidSwitch = "suspend";
+      HandleLidSwitchExternalPower = "suspend";
+    };
 
-  # Power-profiles-daemon so the desktop exposes balanced/performance modes
-  # (used by COSMIC's power settings).
-  services.power-profiles-daemon.enable = true;
+    tlp = {
+      enable = true;
+      settings = {
+        TLP_DEFAULT_MODE = "BAT";
+        TLP_PERSISTENT_DEFAULT = 1;
 
-  # Periodic TRIM for SSD — keeps flash write performance from degrading over
-  # time (fstrim weekly by default).
-  services.fstrim.enable = true;
+        CPU_SCALING_GOVERNOR_ON_AC = "performance";
+        CPU_SCALING_GOVERNOR_ON_BAT = "balanced";
 
-  # Firmware updates (BIOS, SSD, peripherals) via LVFS/`fwupdmgr`.
-  services.fwupd.enable = true;
+        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
 
-  # Use zram (compressed RAM) as swap instead of relying only on disk swap.
-  # On a RAM-limited machine this keeps more working-set in memory and reduces
-  # disk thrash under pressure.
-  zramSwap.enable = true;
+        PLATFORM_PROFILE_ON_AC = "performance";
+        PLATFORM_PROFILE_ON_BAT = "balanced";
 
-  # Lid-close behavior (via logind). Suspend on battery AND on external power:
-  # this is a laptop, so closing the lid should always suspend regardless of
-  # whether it's plugged in.
-  services.logind.settings.Login = {
-    HandleLidSwitch = "suspend";
-    HandleLidSwitchExternalPower = "suspend";
+        CPU_MIN_PERF_ON_AC = 0;
+        CPU_MAX_PERF_ON_AC = 100;
+        CPU_MIN_PERF_ON_BAT = 0;
+        CPU_MAX_PERF_ON_BAT = 20;
+
+        START_CHARGE_THRESH_BAT0 = 40;
+        STOP_CHARGE_THRESH_BAT0 = 80;
+      };
+    };
   };
+  zramSwap.enable = true;
 }

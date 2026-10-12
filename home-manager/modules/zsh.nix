@@ -1,21 +1,15 @@
 {pkgs, ...}: {
   # --- module: zsh.nix -----------------------------------------------------
-  # Owns the interactive zsh experience: keymap, prompt/metrics, `less` color
-  # paging, completions, aliases, and history policy.
-
   programs.zsh = {
     enable = true;
-    # Emacs-style keybindings as the default (consistent with the Emacs-first
-    # workflow; vim users can switch with `bindkey -v`).
+    # Emacs-style keybindings as the default.
     defaultKeymap = "emacs";
 
     initContent = ''
       # Point GPG at the tty so pinentry prompts appear on the right terminal;
-      # without this, `gpg` invoked from a GUI/daemon context can't prompt.
       export GPG_TTY=$(tty)
 
-      # Colourize `less` output for the common termcap capabilities, so
-      # `man`/`git diff` etc. get syntax-coloured text without `less -R` flags.
+      # Colourize `less` output for the common termcap capabilities
       export LESS_TERMCAP_mb=$'\e[1;31m'
       export LESS_TERMCAP_md=$'\e[1;36m'
       export LESS_TERMCAP_me=$'\e[0m'
@@ -48,13 +42,12 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
-    # Quality-of-life aliases: safer defaults (interactive, verbose destructive
-    # commands), prettier output, and common shortcuts.
+    # Quality-of-life aliases: safer defaults
     shellAliases = {
       # --- safer / more informative core commands ---
       cp = "cp -iv";
       mv = "mv -iv";
-      rm = "rm -vI"; # -I: ask before removing many files / -r dirs only
+      rm = "rm -vI";
       rsync = "rsync -vrPlu";
       mkd = "mkdir -pv";
       ls = "lsd -h --color=auto --group-directories-first";
@@ -64,7 +57,7 @@
       ccat = "highlight --out-format=ansi";
       ip = "ip -color=auto";
       bc = "bc -lq";
-      python = "python3"; # python is py2 on some systems; force py3
+      python = "python3";
       ffmpeg = "ffmpeg -hide_banner";
 
       # --- misc shortcuts ---
@@ -73,8 +66,6 @@
       gl = "git log --oneline";
       findstr = "grep -rE --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=lib --exclude-dir=hooks --exclude-dir=.next";
 
-      # --- yt-dlp: default to embedded metadata + the android player client
-      # (more reliable/lower-friction on YouTube), with variants by output.
       yt = "yt-dlp --embed-metadata -i --extractor-args \"youtube:player_client=android\"";
       yta = "yt -x --extract-audio --audio-format mp3 --audio-quality 0";
       ytt = "yt --skip-download --write-thumbnail";
@@ -103,10 +94,10 @@
     };
 
     history = {
-      size = 10000; # keep 10k lines
-      ignoreAllDups = true; # drop older duplicate lines
+      size = 10000;
+      ignoreAllDups = true;
       path = "$HOME/.zsh_history";
-      # Never record destructive/verbose commands (avoid accidental re-runs).
+      # Never record destructive/verbose commands
       ignorePatterns = ["rm *" "pkill *"];
     };
   };

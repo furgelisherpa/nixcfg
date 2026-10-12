@@ -4,8 +4,6 @@
   # for files, grep, git, and LSP, plus the <leader>f which-key group.
 
   programs.nixvim = {
-    extraPackages = with pkgs; [fd ripgrep];
-
     plugins.telescope = {
       enable = true;
 

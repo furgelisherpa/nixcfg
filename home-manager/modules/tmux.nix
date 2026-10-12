@@ -1,16 +1,12 @@
 {pkgs, ...}: {
   # --- module: tmux.nix ----------------------------------------------------
-  # Owns the terminal multiplexer. tmux provides a persistent workspace that
-  # survives window/SSH disconnects; alacritty (alacritty.nix) auto-attaches.
-
   programs.tmux = {
     enable = true;
 
     # Number the windows from 1 instead of 0 (matches typical muscle memory).
     baseIndex = 1;
 
-    # Remove the delay after pressing Esc (important for vim/Emacs keybindings
-    # so mode transitions feel instant rather than laggy).
+    # Remove the delay after pressing Esc.
     escapeTime = 0;
 
     # vim-style pane/window movement keys.
@@ -21,7 +17,7 @@
 
     plugins = with pkgs.tmuxPlugins; [
       sensible # sane defaults community plugin
-      yank # system-clipboard integration (works with OSC52 in alacritty)
+      yank # system-clipboard integration
     ];
 
     extraConfig = ''

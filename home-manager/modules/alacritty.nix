@@ -1,9 +1,5 @@
 {pkgs, ...}: {
   # --- module: alacritty.nix ----------------------------------------------
-  # Owns the terminal emulator. Alacritty is GPU-accelerated; here it's wired
-  # to launch straight into tmux (see terminal.shell below) so every window is
-  # a persistent tmux session rather than a throwaway shell.
-
   programs.alacritty = {
     enable = true;
 
@@ -28,9 +24,7 @@
       };
 
       window = {
-        # Override COSMIC/GNOME client-side decorations with none; a clean,
-        # maximised terminal (matches the minimal look and avoids extra title
-        # bars when snapped).
+        # Override COSMIC/GNOME client-side decorations with none.
         decorations = "None";
         padding = {
           x = 0;
@@ -38,14 +32,14 @@
         };
 
         dynamic_padding = false;
-        opacity = 1.0; # opaque — readability over translucency
+        opacity = 1.0;
         dynamic_title = false;
         startup_mode = "Windowed";
       };
 
       scrolling = {
-        history = 50000; # roomy scrollback
-        multiplier = 3; # faster wheel scrolling
+        history = 50000;
+        multiplier = 3;
       };
 
       cursor = {
@@ -54,18 +48,16 @@
           blinking = "Off";
         };
 
-        unfocused_hollow = true; # hollow cursor when window loses focus
+        unfocused_hollow = false;
       };
 
       terminal = {
-        osc52 = "OnlyCopy"; # allow OSC52 clipboard write from apps (e.g. tmux yank)
+        osc52 = "OnlyCopy";
         shell = {
-          # Auto-start tmux inside every alacritty window: attach to (or create)
-          # the shared `system` session, so new windows join the same workspace.
           program = "${pkgs.tmux}/bin/tmux";
           args = [
             "new-session"
-            "-A" # attach to `system` if it exists, else create it
+            "-A"
             "-s"
             "system"
           ];

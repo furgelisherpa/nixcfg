@@ -17,11 +17,11 @@
       termguicolors = true; # True color support
       number = true; # Print line numbers
       relativenumber = true; # Relative line numbers
-      cursorline = true; # Highlight the current line
+      cursorline = false; # Highlight the current line
       guicursor = "n-v-c-sm:block,ci-ve:ver25,r-cr-o:hor20,i:block-blinkwait700-blinkoff400-blinkon250-Cursor/lCursor"; # Block cursor in every mode
       showmode = false; # Hide default mode display
       signcolumn = "yes"; # Always show sign column
-      colorcolumn = "80"; # Highlight column 80
+      colorcolumn = ""; # donot highlight column
       textwidth = 80; # Max width for code wrapping
       scrolloff = 10; # Minimum screen lines above/below cursor
       sidescrolloff = 10; # Minimum screen columns to left/right of cursor
@@ -97,6 +97,7 @@
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
       -- vim.opt.path:append("**")
+      vim.cmd.colorscheme("vim");
     '';
   };
 }
