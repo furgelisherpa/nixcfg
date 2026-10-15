@@ -54,4 +54,13 @@
 
   # Standalone home-manager needs the explicit home dir for sops paths
   home.homeDirectory = lib.mkDefault "/home/pstivy";
+
+  # Run sops-nix after linkGeneration so sops-nix.service exists on first activation.
+  home.activation.sops-nix = lib.mkForce (
+    lib.hm.dag.entryAfter ["linkGeneration"] ''
+      export XDG_RUNTIME_DIR="''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+      run ${pkgs.systemd}/bin/systemctl --user daemon-reload
+      run ${pkgs.systemd}/bin/systemctl --user restart sops-nix.service
+    ''
+  );
 }
