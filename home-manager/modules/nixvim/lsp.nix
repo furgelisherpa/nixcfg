@@ -26,6 +26,7 @@
     extraPackages = with pkgs; [
       nixd
       typescript
+      jdt-language-server
     ];
 
     plugins = {
@@ -92,21 +93,15 @@
 
           lspBuf = {
             "K" = "hover";
-            "<leader>ld" = "definition";
-            "<leader>lD" = "declaration";
-            "<leader>lR" = "references";
-            "<leader>lI" = "implementation";
             "<leader>ls" = "signature_help";
-            "<leader>la" = "code_action";
             "<leader>lr" = "rename";
           };
           diagnostic = {
-            "gl" = "open_float";
             "[d" = "goto_prev";
             "]d" = "goto_next";
             "<leader>lj" = "goto_next";
             "<leader>lk" = "goto_prev";
-            "<leader>ld" = "open_float";
+            "<leader>le" = "open_float";
             "<leader>lq" = "setloclist";
           };
         };
@@ -129,6 +124,7 @@
           };
 
           ts_ls.enable = true;
+          jdtls.enable = true;
         };
       };
 

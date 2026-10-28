@@ -32,26 +32,28 @@ in {
     mkEnableOption "Flutter development environment";
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      flutter
-      jdk17
-      gradle
-      firebase-tools
-      androidSdk
-    ];
+    home = {
+      packages = with pkgs; [
+        flutter
+        jdk17
+        gradle
+        firebase-tools
+        androidSdk
+      ];
 
-    home.sessionVariables = {
-      ANDROID_SDK_ROOT = sdkRoot;
-      ANDROID_HOME = sdkRoot;
-      JAVA_HOME = "${pkgs.jdk17}";
-      GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${sdkRoot}/build-tools/34.0.0/aapt2";
+      sessionVariables = {
+        ANDROID_SDK_ROOT = sdkRoot;
+        ANDROID_HOME = sdkRoot;
+        JAVA_HOME = "${pkgs.jdk17}";
+        GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${sdkRoot}/build-tools/34.0.0/aapt2";
+      };
+
+      sessionPath = [
+        "${sdkRoot}/platform-tools"
+        "${sdkRoot}/cmdline-tools/latest/bin"
+        "${sdkRoot}/emulator"
+        "$HOME/.pub-cache/bin"
+      ];
     };
-
-    home.sessionPath = [
-      "${sdkRoot}/platform-tools"
-      "${sdkRoot}/cmdline-tools/latest/bin"
-      "${sdkRoot}/emulator"
-      "$HOME/.pub-cache/bin"
-    ];
   };
 }

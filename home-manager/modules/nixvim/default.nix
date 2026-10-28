@@ -19,7 +19,9 @@
     ./terminal.nix
     ./formatting.nix
     ./lint.nix
-    ./telescope.nix
+    ./fzf-lua.nix
+    ./nvim-tree.nix
+    ./lualine.nix
   ];
 
   programs.nixvim = {

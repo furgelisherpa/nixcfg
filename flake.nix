@@ -12,15 +12,6 @@
 
     nixvim.url = "github:nix-community/nixvim";
 
-    nix-doom-emacs-unstraightened = {
-      url = "github:marienz/nix-doom-emacs-unstraightened";
-    };
-
-    doom-config = {
-      url = "path:./home-manager/doom.d";
-      flake = false;
-    };
-
     hosts = {
       url = "github:StevenBlack/hosts";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -12,7 +12,6 @@
     ./modules/zsh.nix
     ./modules/tmux.nix
     ./modules/nixvim
-    ./modules/doom-emacs.nix
     ./modules/quteborwser.nix
     ./modules/flutter
   ];

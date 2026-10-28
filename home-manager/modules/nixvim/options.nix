@@ -85,6 +85,9 @@
       inccommand = "nosplit"; # Live preview of substitutions
       gdefault = true; # Swap all instances in a line by default
       formatoptions = "jcroql"; # Appends "j" while maintaining standard defaults
+
+      wildmode = "longest:full,full"; # Complete the longest match first, then show all matches
+      autochdir = true; # Automatically change the working directory to the current file's directory
     };
 
     globals = {
@@ -96,7 +99,14 @@
     extraConfigLua = ''
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
-      -- vim.opt.path:append("**")
+      vim.opt.wildignore:append({
+        "*/.git/*",
+        "*/node_modules/*",
+        "*/.direnv/*",
+        "*/result/*",
+        "*/build/*",
+        "*/dist/*",
+      })
       vim.cmd.colorscheme("vim");
     '';
   };

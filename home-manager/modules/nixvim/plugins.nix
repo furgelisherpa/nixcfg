@@ -13,68 +13,7 @@
       glib
     ];
 
-    # Colorscheme
-    # colorschemes.ef-themes= {
-    #   enable = true;
-
-    #   settings = {
-    #     background = {
-    #       transparent = false;
-    #     };
-    #     comments = {
-    #       italics = false;
-    #     };
-    #     contrast = "hard";
-    #     float = {
-    #       force_background = false;
-    #     };
-    #     italics = false;
-    #     signs = {
-    #       force_background = false;
-    #     };
-    #   };
-    # };
-
     plugins = {
-      # File explorer sidebar
-      nvim-tree = {
-        enable = true;
-
-        settings = {
-          view = {
-            width = 30;
-            side = "left";
-            relativenumber = false;
-          };
-
-          renderer = {
-            group_empty = true;
-            highlight_git = true;
-            icons.show = {
-              file = true;
-              folder = true;
-              folder_arrow = true;
-              git = true;
-            };
-          };
-
-          filters = {
-            dotfiles = false;
-            custom = [
-              "^\\.git$"
-              "^node_modules$"
-              "^\\.cache$"
-            ];
-          };
-
-          actions = {
-            open_file = {
-              quit_on_open = false;
-            };
-          };
-        };
-      };
-
       # Syntax highlighting / indentation via tree-sitter
       treesitter = {
         enable = true;
@@ -126,20 +65,10 @@
       ts-autotag.enable = true;
       nvim-autopairs.enable = true;
       web-devicons.enable = true;
-      lualine.enable = false;
+      flutter-tools.enable = true;
+      lazygit.enable = true;
+      gitsigns.enable = true;
+      multicursors.enable = true;
     };
-
-    # Keymap lives here, next to the plugin it controls
-    keymaps = [
-      {
-        mode = "n";
-        key = "<leader>e";
-        action = "<cmd>NvimTreeToggle<CR>";
-        options = {
-          desc = "Toggle NvimTree";
-          silent = true;
-        };
-      }
-    ];
   };
 }
